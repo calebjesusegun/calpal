@@ -5,6 +5,7 @@ import 'package:calpal/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:calpal/services/secure_storage_service.dart';
+import 'package:calpal/services/dio_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -18,6 +19,7 @@ import 'package:calpal/services/secure_storage_service.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SecureStorageService),
+    LazySingleton(classType: DioService),
 // @stacked-service
   ],
   bottomsheets: [
