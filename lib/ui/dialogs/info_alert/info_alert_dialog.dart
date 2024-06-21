@@ -19,10 +19,10 @@ class InfoAlertDialog extends StackedView<InfoAlertDialogModel> {
 
   @override
   Widget builder(
-      BuildContext context,
-      InfoAlertDialogModel viewModel,
-      Widget? child,
-      ) {
+    BuildContext context,
+    InfoAlertDialogModel viewModel,
+    Widget? child,
+  ) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: Colors.white,

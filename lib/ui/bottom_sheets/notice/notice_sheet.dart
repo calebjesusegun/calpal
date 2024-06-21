@@ -17,10 +17,10 @@ class NoticeSheet extends StackedView<NoticeSheetModel> {
 
   @override
   Widget builder(
-      BuildContext context,
-      NoticeSheetModel viewModel,
-      Widget? child,
-      ) {
+    BuildContext context,
+    NoticeSheetModel viewModel,
+    Widget? child,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: const BoxDecoration(
