@@ -3,6 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:calpal/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:calpal/services/secure_storage_service.dart';
+import 'package:calpal/services/dio_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -12,6 +13,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<SecureStorageService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<DioService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -19,6 +21,7 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterSecureStorageService();
+  getAndRegisterDioService();
 // @stacked-mock-register
 }
 
@@ -76,6 +79,13 @@ MockSecureStorageService getAndRegisterSecureStorageService() {
   _removeRegistrationIfExists<SecureStorageService>();
   final service = MockSecureStorageService();
   locator.registerSingleton<SecureStorageService>(service);
+  return service;
+}
+
+MockDioService getAndRegisterDioService() {
+  _removeRegistrationIfExists<DioService>();
+  final service = MockDioService();
+  locator.registerSingleton<DioService>(service);
   return service;
 }
 // @stacked-mock-create

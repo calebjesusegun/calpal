@@ -17,11 +17,10 @@ import '../app/app.logger.dart';
 
 class SecureStorageService {
   final _logger = getLogger('SecureStorageService');
-  final String _refreshKey = 'refresh_token';
+  final String _accessToken = 'access_token';
   final String _user = 'user';
   final FlutterSecureStorage _flutterSecureStorage =
-  const FlutterSecureStorage();
-
+      const FlutterSecureStorage();
 
   Future<void> deleteUser() async {
     try {
@@ -31,19 +30,19 @@ class SecureStorageService {
     }
   }
 
-  Future<void> deleteRefreshToken() async {
+  Future<void> deleteAccessToken() async {
     try {
-      await _flutterSecureStorage.delete(key: _refreshKey);
+      await _flutterSecureStorage.delete(key: _accessToken);
     } catch (e, s) {
       _logger.e('error trying to delete refresh token', e, s);
     }
   }
 
-  Future<String?> readRefreshToken() async {
+  Future<String?> readAccessToken() async {
     try {
-      return await _flutterSecureStorage.read(key: _refreshKey);
+      return await _flutterSecureStorage.read(key: _accessToken);
     } catch (e, s) {
-      _logger.e('error trying to read refresh token', e, s);
+      _logger.e('error trying to read access token', e, s);
       return null;
     }
   }
@@ -69,12 +68,11 @@ class SecureStorageService {
     }
   }
 
-  Future<void> writeRefreshToken({String? token}) async {
+  Future<void> writeAccessToken({String? token}) async {
     try {
-      await _flutterSecureStorage.write(key: _refreshKey, value: token);
+      await _flutterSecureStorage.write(key: _accessToken, value: token);
     } catch (e, s) {
-      _logger.e('error trying to write refresh token', e, s);
+      _logger.e('error trying to write access token', e, s);
     }
   }
-
 }
