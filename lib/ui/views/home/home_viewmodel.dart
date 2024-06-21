@@ -1,7 +1,6 @@
 import 'package:stacked/stacked.dart';
 
 class HomeViewModel extends BaseViewModel {
-
   String get counterLabel => 'Counter is: $_counter';
 
   int _counter = 0;
@@ -10,5 +9,4 @@ class HomeViewModel extends BaseViewModel {
     _counter++;
     rebuildUi();
   }
-
 }
