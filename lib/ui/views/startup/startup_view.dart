@@ -1,8 +1,10 @@
+import 'package:calpal/ui/views/startup/widget/app_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:stacked/stacked.dart';
-import 'package:calpal/ui/common/ui_helpers.dart';
-
+import '../../common/app_colors.dart';
+import '../../common/app_images.dart';
 import 'startup_viewmodel.dart';
 
 class StartupView extends StackedView<StartupViewModel> {
@@ -14,29 +16,29 @@ class StartupView extends StackedView<StartupViewModel> {
     StartupViewModel viewModel,
     Widget? child,
   ) {
-    return const Scaffold(
-      body: Center(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'STACKED',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
+            Align(
+              alignment: Alignment.topLeft,
+              child: SvgPicture.asset(
+                AppImages.blob1,
+              ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Loading ...', style: TextStyle(fontSize: 16)),
-                horizontalSpaceSmall,
-                SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                    strokeWidth: 6,
-                  ),
-                )
-              ],
+            const Expanded(
+              flex: 1,
+              child: AppLogoWidget(),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: SvgPicture.asset(
+                AppImages.blob2,
+              ),
             ),
           ],
         ),
