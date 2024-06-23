@@ -8,6 +8,10 @@ class AppText {
   static String ksProtein = 'Protein';
   static String ksFats = 'Fats';
   static String ksFruits = 'Fruits';
+  static String ksHome = 'Home';
+  static String ksExplore = 'Explore';
+  static String ksRecommendedFood =
+      'Here are your recommended food suggestions';
   static String ksChooseCategory = 'Choose your preferred category of food';
   static String ksUsernameRequired = 'Username Required';
   static String ksRequired = 'Required';

@@ -700,6 +700,16 @@ class MockSecureStorageService extends _i1.Mock
       ) as _i5.Future<void>);
 
   @override
+  _i5.Future<void> deleteUsername() => (super.noSuchMethod(
+        Invocation.method(
+          #deleteUsername,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
   _i5.Future<String?> readAccessToken() => (super.noSuchMethod(
         Invocation.method(
           #readAccessToken,
@@ -718,6 +728,28 @@ class MockSecureStorageService extends _i1.Mock
         returnValue: _i5.Future<String?>.value(),
         returnValueForMissingStub: _i5.Future<String?>.value(),
       ) as _i5.Future<String?>);
+
+  @override
+  _i5.Future<String?> readUsername() => (super.noSuchMethod(
+        Invocation.method(
+          #readUsername,
+          [],
+        ),
+        returnValue: _i5.Future<String?>.value(),
+        returnValueForMissingStub: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
+
+  @override
+  _i5.Future<void> writeUsername({required String? username}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #writeUsername,
+          [],
+          {#username: username},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
   _i5.Future<void> writeUser({required Map<dynamic, dynamic>? user}) =>

@@ -116,7 +116,7 @@ class OnboardingCategoryView extends StackedView<OnboardingCategoryViewModel> {
         ),
         child: PrimaryButton(
           buttonText: AppText.ksProceed,
-          onTap: () => {},
+          onTap: () => viewModel.actionRouteToHome(),
           isDisabled: viewModel.getDisabledState(),
           loadingStateStatus: false,
         ),
