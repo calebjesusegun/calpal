@@ -17,5 +17,4 @@ final class StringUtil {
   static bool isNotEmpty(String? s) {
     return s != null && s.isNotEmpty;
   }
-
 }

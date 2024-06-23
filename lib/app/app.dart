@@ -9,6 +9,9 @@ import 'package:calpal/services/dio_service.dart';
 import 'package:calpal/ui/views/onboarding/onboarding_view.dart';
 import 'package:calpal/ui/views/onboarding/onboarding_username/onboarding_username_view.dart';
 import 'package:calpal/ui/views/onboarding/onboarding_category/onboarding_category_view.dart';
+import 'package:calpal/ui/views/dashboard/dashboard_view.dart';
+import 'package:calpal/ui/views/explore/explore_view.dart';
+import 'package:calpal/ui/views/dashboard/individual_food_suggestion/individual_food_suggestion_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -18,6 +21,9 @@ import 'package:calpal/ui/views/onboarding/onboarding_category/onboarding_catego
     MaterialRoute(page: OnboardingView),
     MaterialRoute(page: OnboardingUsernameView),
     MaterialRoute(page: OnboardingCategoryView),
+    MaterialRoute(page: DashboardView),
+    MaterialRoute(page: ExploreView),
+    MaterialRoute(page: IndividualFoodSuggestionView),
 // @stacked-route
   ],
   dependencies: [
