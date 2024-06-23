@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
 import '../app/app.logger.dart';
 import '../exceptions/calpal_exceptions.dart';
 import '../interceptors/app_interceptors.dart';
@@ -14,8 +12,7 @@ class DioService {
   DioService() {
     _dio = Dio(
       BaseOptions(
-        baseUrl:
-        "",
+        baseUrl: "",
         connectTimeout: const Duration(seconds: 50),
       ),
     );
@@ -138,21 +135,29 @@ class DioService {
 
   void _handleError(DioException e) {
     if (e.type == DioExceptionType.unknown && e.error is SocketException) {
-      throw CalpalException(message:'Unknown Error',);
+      throw CalpalException(
+        message: 'Unknown Error',
+      );
     }
 
     if (e.type == DioExceptionType.connectionTimeout) {
-      throw CalpalException(message: 'No Internet Connection. It seems like the connection timed out');
+      throw CalpalException(
+          message:
+              'No Internet Connection. It seems like the connection timed out');
     }
 
     if (e.type == DioExceptionType.connectionError) {
-      throw CalpalException(message: 'Seems like we got a problem connecting to the server. Kindly try again when you have a stronger network',);
+      throw CalpalException(
+        message:
+            'Seems like we got a problem connecting to the server. Kindly try again when you have a stronger network',
+      );
     }
 
     if (e.response?.statusCode == 500) {
       throw CalpalException(message: 'Service Unavailable');
     }
     throw CalpalException(
-        message: e.response!.data["message"] ?? 'Unknown Error',);
+      message: e.response!.data["message"] ?? 'Unknown Error',
+    );
   }
 }

@@ -13,9 +13,9 @@ class AppInterceptor extends Interceptor {
 
   @override
   Future<void> onRequest(
-      RequestOptions options,
-      RequestInterceptorHandler handler,
-      ) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     String? token = await _secureStorageService.readAccessToken() ?? "";
     _logger.i("Token: $token");
 
@@ -33,10 +33,9 @@ class AppInterceptor extends Interceptor {
 
   @override
   Future<void> onError(
-      DioException err,
-      ErrorInterceptorHandler handler,
-      ) async {
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
     super.onError(err, handler);
   }
-
 }
