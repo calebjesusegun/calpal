@@ -8,6 +8,7 @@ import 'dart:ui' as _i6;
 
 import 'package:calpal/services/dio_service.dart' as _i8;
 import 'package:calpal/services/secure_storage_service.dart' as _i7;
+import 'package:dio/dio.dart' as _i9;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
@@ -689,9 +690,9 @@ class MockSecureStorageService extends _i1.Mock
       ) as _i5.Future<void>);
 
   @override
-  _i5.Future<void> deleteRefreshToken() => (super.noSuchMethod(
+  _i5.Future<void> deleteAccessToken() => (super.noSuchMethod(
         Invocation.method(
-          #deleteRefreshToken,
+          #deleteAccessToken,
           [],
         ),
         returnValue: _i5.Future<void>.value(),
@@ -699,9 +700,9 @@ class MockSecureStorageService extends _i1.Mock
       ) as _i5.Future<void>);
 
   @override
-  _i5.Future<String?> readRefreshToken() => (super.noSuchMethod(
+  _i5.Future<String?> readAccessToken() => (super.noSuchMethod(
         Invocation.method(
-          #readRefreshToken,
+          #readAccessToken,
           [],
         ),
         returnValue: _i5.Future<String?>.value(),
@@ -731,9 +732,9 @@ class MockSecureStorageService extends _i1.Mock
       ) as _i5.Future<void>);
 
   @override
-  _i5.Future<void> writeRefreshToken({String? token}) => (super.noSuchMethod(
+  _i5.Future<void> writeAccessToken({String? token}) => (super.noSuchMethod(
         Invocation.method(
-          #writeRefreshToken,
+          #writeAccessToken,
           [],
           {#token: token},
         ),
@@ -745,4 +746,106 @@ class MockSecureStorageService extends _i1.Mock
 /// A class which mocks [DioService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDioService extends _i1.Mock implements _i8.DioService {}
+class MockDioService extends _i1.Mock implements _i8.DioService {
+  @override
+  _i5.Future<dynamic> post({
+    required String? path,
+    Map<String, dynamic>? data,
+    dynamic formData,
+    Map<String, dynamic>? queryParameters,
+    _i9.Options? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #post,
+          [],
+          {
+            #path: path,
+            #data: data,
+            #formData: formData,
+            #queryParameters: queryParameters,
+            #options: options,
+          },
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+
+  @override
+  _i5.Future<dynamic> get({
+    required String? path,
+    Map<String, dynamic>? queryParameters,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #get,
+          [],
+          {
+            #path: path,
+            #queryParameters: queryParameters,
+          },
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+
+  @override
+  _i5.Future<dynamic> put({
+    required String? path,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #put,
+          [],
+          {
+            #path: path,
+            #data: data,
+            #queryParameters: queryParameters,
+          },
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+
+  @override
+  _i5.Future<dynamic> patch({
+    required String? path,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #patch,
+          [],
+          {
+            #path: path,
+            #data: data,
+            #queryParameters: queryParameters,
+          },
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+
+  @override
+  _i5.Future<dynamic> delete({
+    required String? path,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [],
+          {
+            #path: path,
+            #data: data,
+            #queryParameters: queryParameters,
+          },
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+}

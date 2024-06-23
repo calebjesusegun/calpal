@@ -1,18 +1,5 @@
-/*
-------------------------------------------------------------------------
-| SECURE STORAGE SERVICE
-| ----------------------------------------------------------------------
-| By: Caleb Jesusegun            | Date: 21 - Jun - 2024                |
-| ----------------------------------------------------------------------
-| Modified by:                   | Comments:                            |
-------------------------------------------------------------------------
-NB:
-*/
-
 import 'dart:convert';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 import '../app/app.logger.dart';
 
 class SecureStorageService {

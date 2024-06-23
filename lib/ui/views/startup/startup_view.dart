@@ -16,32 +16,30 @@ class StartupView extends StackedView<StartupViewModel> {
     StartupViewModel viewModel,
     Widget? child,
   ) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.white,
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: SvgPicture.asset(
-                AppImages.blob1,
-              ),
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: SvgPicture.asset(
+              AppImages.blob1,
             ),
-            const Expanded(
-              flex: 1,
-              child: AppLogoWidget(),
+          ),
+          const Expanded(
+            flex: 1,
+            child: AppLogoWidget(),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: SvgPicture.asset(
+              AppImages.blob2,
             ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: SvgPicture.asset(
-                AppImages.blob2,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
