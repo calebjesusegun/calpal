@@ -15,10 +15,6 @@ class DashboardViewModel extends BaseViewModel {
   String? _username = '';
   String? get username => _username;
 
-  /// Variable to store the Food Details Response
-  Map _foodDetailsResponse = {};
-  Map get foodDetailsResponse => _foodDetailsResponse;
-
   /// Method to retrieve users username
   retrieveUsername() async {
     _username = await _secureStorageService.readUsername();

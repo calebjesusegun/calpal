@@ -4,6 +4,7 @@ import 'package:calpal/app/app.bottomsheets.dart';
 import 'package:calpal/app/app.dialogs.dart';
 import 'package:calpal/app/app.locator.dart';
 import 'package:calpal/app/app.router.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -19,6 +20,9 @@ Future<void> main() async {
 
   /// Initiate configurations for overlay support -- showSimpleNotification
   _utilsService.configLoading();
+
+  /// Load env file
+  await dotenv.load(fileName: ".env");
 
   runApp(const MainApp());
 }
