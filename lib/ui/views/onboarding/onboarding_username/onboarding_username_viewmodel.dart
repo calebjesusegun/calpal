@@ -8,11 +8,13 @@ import 'onboarding_username_view.form.dart';
 
 class OnboardingUsernameViewModel extends FormViewModel
     with $OnboardingUsernameView {
+  /// Initializing the required Services and Dependencies
   final _navigationService = locator<NavigationService>();
   final _secureStorageService = locator<SecureStorageService>();
   final _logger = getLogger('OnboardingUsernameViewModel');
 
-  void actionRouteToOnboardingUsername(String username) async {
+  /// Method to route to the onboarding category view and store the username in local storage
+  void actionRouteToOnboardingCategory(String username) async {
     await _secureStorageService.writeUsername(username: username);
 
     _navigationService.navigateToOnboardingCategoryView();

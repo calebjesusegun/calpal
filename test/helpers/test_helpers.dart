@@ -3,7 +3,8 @@ import 'package:mockito/mockito.dart';
 import 'package:calpal/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:calpal/services/secure_storage_service.dart';
-import 'package:calpal/services/dio_service.dart';
+import 'package:calpal/services/generative_ai_client_service.dart';
+import 'package:calpal/services/utils_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -13,7 +14,9 @@ import 'test_helpers.mocks.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<SecureStorageService>(onMissingStub: OnMissingStub.returnDefault),
-  MockSpec<DioService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<GenerativeAiClientService>(
+      onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<UtilsService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -21,7 +24,8 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterSecureStorageService();
-  getAndRegisterDioService();
+  getAndRegisterGenerativeAiClientService();
+  getAndRegisterUtilsService();
 // @stacked-mock-register
 }
 
@@ -82,10 +86,17 @@ MockSecureStorageService getAndRegisterSecureStorageService() {
   return service;
 }
 
-MockDioService getAndRegisterDioService() {
-  _removeRegistrationIfExists<DioService>();
-  final service = MockDioService();
-  locator.registerSingleton<DioService>(service);
+MockGenerativeAiClientService getAndRegisterGenerativeAiClientService() {
+  _removeRegistrationIfExists<GenerativeAiClientService>();
+  final service = MockGenerativeAiClientService();
+  locator.registerSingleton<GenerativeAiClientService>(service);
+  return service;
+}
+
+MockUtilsService getAndRegisterUtilsService() {
+  _removeRegistrationIfExists<UtilsService>();
+  final service = MockUtilsService();
+  locator.registerSingleton<UtilsService>(service);
   return service;
 }
 // @stacked-mock-create
