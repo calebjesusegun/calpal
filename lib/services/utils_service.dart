@@ -1,9 +1,7 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:overlay_support/overlay_support.dart';
-
 import '../ui/common/app_colors.dart';
 
 class UtilsService {
