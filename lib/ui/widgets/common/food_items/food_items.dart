@@ -30,39 +30,6 @@ class FoodItems extends StackedView<FoodItemsModel> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // InkWell(
-        //   onTap: onTap,
-        //   child: ClipRRect(
-        //     borderRadius: BorderRadius.circular(20.0.r),
-        //     child: CachedNetworkImage(
-        //       imageUrl: productUrl,
-        //       height: 200.h,
-        //       width: (screenWidth(context).w / 2) - ((sidePadding * 2) + 8.w),
-        //       fit: BoxFit.fill,
-        //       placeholder: (context, url) => Shimmer.fromColors(
-        //         baseColor: (Colors.grey[300])!,
-        //         highlightColor: (Colors.grey[100])!,
-        //         enabled: true,
-        //         child: Container(
-        //           height: 200.h,
-        //           width: (screenWidth(context).w / 2) - ((sidePadding * 2) + 8.w),
-        //           decoration: BoxDecoration(
-        //             borderRadius: BorderRadius.circular(20.r),
-        //             color: Colors.white,
-        //           ),
-        //         ),
-        //       ),
-        //       errorWidget: (context, url, error) => Container(
-        //         height: 200.h,
-        //         width: (screenWidth(context).w / 2) - ((sidePadding * 2) + 8.w),
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(20.r),
-        //           color: AppColors.grey03.withOpacity(0.5),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
         InkWell(
           onTap: onTap,
           child: ClipRRect(

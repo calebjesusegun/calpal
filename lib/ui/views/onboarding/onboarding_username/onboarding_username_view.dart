@@ -91,7 +91,7 @@ class OnboardingUsernameView extends StackedView<OnboardingUsernameViewModel>
         child: PrimaryButton(
           buttonText: AppText.ksProceed,
           onTap: () => viewModel
-              .actionRouteToOnboardingUsername(usernameController.text),
+              .actionRouteToOnboardingCategory(usernameController.text),
           isDisabled: usernameController.text.isEmpty,
           loadingStateStatus: false,
         ),

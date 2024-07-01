@@ -1,4 +1,3 @@
-import 'package:calpal/ui/views/onboarding/onboarding_category/widget/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,105 +19,104 @@ class OnboardingCategoryView extends StackedView<OnboardingCategoryViewModel> {
     OnboardingCategoryViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: sidePadding,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    AppImages.appLogo,
-                    width: 80.w,
+    final Size size = MediaQuery.of(context).size;
+    return AbsorbPointer(
+      absorbing: viewModel.loadingStateStatus,
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: sidePadding,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 10.h,
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Text(
-                  AppText.ksCategory,
-                  style: AppTextStyles.titleRegularSize16.copyWith(
-                      fontSize: 19.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.grey01),
-                ),
-                SizedBox(
-                  height: 6.h,
-                ),
-                Text(
-                  AppText.ksChooseCategory,
-                  style: AppTextStyles.titleRegularSize16.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.grey03),
-                ),
-                SizedBox(
-                  height: 24.h,
-                ),
-                Row(
-                  children: [
-                    CategoryItem(
-                      isCategorySelected: (viewModel.selectedIndex == 0),
-                      categoryName: AppText.ksCarbohydrates,
-                      assetName: AppImages.carbonhydrate,
-                      onTap: () => viewModel.updateSelectedIndex(0),
+                  Material(
+                    color: AppColors.transparent,
+                    child: InkWell(
+                      onTap: () => viewModel.actionRouteBack(),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: SvgPicture.asset(
+                          AppImages.backButton,
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    CategoryItem(
-                      isCategorySelected: (viewModel.selectedIndex == 1),
-                      categoryName: AppText.ksProtein,
-                      assetName: AppImages.protein,
-                      onTap: () => viewModel.updateSelectedIndex(1),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                Row(
-                  children: [
-                    CategoryItem(
-                      isCategorySelected: (viewModel.selectedIndex == 2),
-                      categoryName: AppText.ksFats,
-                      assetName: AppImages.fats,
-                      onTap: () => viewModel.updateSelectedIndex(2),
-                    ),
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    CategoryItem(
-                      isCategorySelected: (viewModel.selectedIndex == 3),
-                      categoryName: AppText.ksFruits,
-                      assetName: AppImages.fruits,
-                      onTap: () => viewModel.updateSelectedIndex(3),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Text(
+                    AppText.ksCategory,
+                    style: AppTextStyles.titleRegularSize16.copyWith(
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.grey01),
+                  ),
+                  SizedBox(
+                    height: 6.h,
+                  ),
+                  Text(
+                    AppText.ksChooseCategory,
+                    style: AppTextStyles.titleRegularSize16.copyWith(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.grey03),
+                  ),
+                  SizedBox(
+                    height: 24.h,
+                  ),
+                  Builder(builder: (context) {
+                    if (viewModel.selectedMedia.isEmpty) {
+                      return Material(
+                        color: AppColors.transparent,
+                        child: InkWell(
+                          onTap: () => viewModel.pickFiles(),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: SvgPicture.asset(
+                              AppImages.uploadImage,
+                              fit: BoxFit.fill,
+                              width: size.width.w,
+                              height: 220.h,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(6.r),
+                      child: Image.file(
+                        viewModel.file,
+                        fit: BoxFit.cover,
+                        width: size.width.w,
+                        height: 300.h,
+                      ),
+                    );
+                  }),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: sidePadding,
-          vertical: 36.h,
-        ),
-        child: PrimaryButton(
-          buttonText: AppText.ksProceed,
-          onTap: () => viewModel.actionRouteToHome(),
-          isDisabled: viewModel.getDisabledState(),
-          loadingStateStatus: false,
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: sidePadding,
+            vertical: 36.h,
+          ),
+          child: PrimaryButton(
+            buttonText: AppText.ksProceed,
+            onTap: () => viewModel.getFoodDetails(),
+            isDisabled: viewModel.getDisabledState(),
+            loadingStateStatus: viewModel.loadingStateStatus,
+          ),
         ),
       ),
     );

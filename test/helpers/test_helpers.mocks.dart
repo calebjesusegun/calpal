@@ -4,11 +4,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
+import 'dart:typed_data' as _i9;
 import 'dart:ui' as _i6;
 
-import 'package:calpal/services/dio_service.dart' as _i8;
+import 'package:calpal/services/generative_ai_client_service.dart' as _i8;
 import 'package:calpal/services/secure_storage_service.dart' as _i7;
-import 'package:dio/dio.dart' as _i9;
+import 'package:calpal/services/utils_service.dart' as _i10;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
@@ -680,26 +681,6 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 class MockSecureStorageService extends _i1.Mock
     implements _i7.SecureStorageService {
   @override
-  _i5.Future<void> deleteUser() => (super.noSuchMethod(
-        Invocation.method(
-          #deleteUser,
-          [],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<void> deleteAccessToken() => (super.noSuchMethod(
-        Invocation.method(
-          #deleteAccessToken,
-          [],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
   _i5.Future<void> deleteUsername() => (super.noSuchMethod(
         Invocation.method(
           #deleteUsername,
@@ -708,26 +689,6 @@ class MockSecureStorageService extends _i1.Mock
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<String?> readAccessToken() => (super.noSuchMethod(
-        Invocation.method(
-          #readAccessToken,
-          [],
-        ),
-        returnValue: _i5.Future<String?>.value(),
-        returnValueForMissingStub: _i5.Future<String?>.value(),
-      ) as _i5.Future<String?>);
-
-  @override
-  _i5.Future<String?> readUser() => (super.noSuchMethod(
-        Invocation.method(
-          #readUser,
-          [],
-        ),
-        returnValue: _i5.Future<String?>.value(),
-        returnValueForMissingStub: _i5.Future<String?>.value(),
-      ) as _i5.Future<String?>);
 
   @override
   _i5.Future<String?> readUsername() => (super.noSuchMethod(
@@ -750,134 +711,55 @@ class MockSecureStorageService extends _i1.Mock
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<void> writeUser({required Map<dynamic, dynamic>? user}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #writeUser,
-          [],
-          {#user: user},
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<void> writeAccessToken({String? token}) => (super.noSuchMethod(
-        Invocation.method(
-          #writeAccessToken,
-          [],
-          {#token: token},
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
 }
 
-/// A class which mocks [DioService].
+/// A class which mocks [GenerativeAiClientService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDioService extends _i1.Mock implements _i8.DioService {
+class MockGenerativeAiClientService extends _i1.Mock
+    implements _i8.GenerativeAiClientService {
   @override
-  _i5.Future<dynamic> post({
-    required String? path,
-    Map<String, dynamic>? data,
-    dynamic formData,
-    Map<String, dynamic>? queryParameters,
-    _i9.Options? options,
-  }) =>
+  _i5.Future<String?> generateFoodDetails(_i9.Uint8List? image) =>
       (super.noSuchMethod(
         Invocation.method(
-          #post,
-          [],
-          {
-            #path: path,
-            #data: data,
-            #formData: formData,
-            #queryParameters: queryParameters,
-            #options: options,
-          },
+          #generateFoodDetails,
+          [image],
         ),
-        returnValue: _i5.Future<dynamic>.value(),
-        returnValueForMissingStub: _i5.Future<dynamic>.value(),
-      ) as _i5.Future<dynamic>);
+        returnValue: _i5.Future<String?>.value(),
+        returnValueForMissingStub: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
+}
+
+/// A class which mocks [UtilsService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUtilsService extends _i1.Mock implements _i10.UtilsService {
+  @override
+  void configLoading() => super.noSuchMethod(
+        Invocation.method(
+          #configLoading,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i5.Future<dynamic> get({
-    required String? path,
-    Map<String, dynamic>? queryParameters,
-  }) =>
-      (super.noSuchMethod(
+  void errorMsgNotification({required String? text}) => super.noSuchMethod(
         Invocation.method(
-          #get,
+          #errorMsgNotification,
           [],
-          {
-            #path: path,
-            #queryParameters: queryParameters,
-          },
+          {#text: text},
         ),
-        returnValue: _i5.Future<dynamic>.value(),
-        returnValueForMissingStub: _i5.Future<dynamic>.value(),
-      ) as _i5.Future<dynamic>);
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i5.Future<dynamic> put({
-    required String? path,
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
-  }) =>
-      (super.noSuchMethod(
+  void successMsgNotification({required String? text}) => super.noSuchMethod(
         Invocation.method(
-          #put,
+          #successMsgNotification,
           [],
-          {
-            #path: path,
-            #data: data,
-            #queryParameters: queryParameters,
-          },
+          {#text: text},
         ),
-        returnValue: _i5.Future<dynamic>.value(),
-        returnValueForMissingStub: _i5.Future<dynamic>.value(),
-      ) as _i5.Future<dynamic>);
-
-  @override
-  _i5.Future<dynamic> patch({
-    required String? path,
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #patch,
-          [],
-          {
-            #path: path,
-            #data: data,
-            #queryParameters: queryParameters,
-          },
-        ),
-        returnValue: _i5.Future<dynamic>.value(),
-        returnValueForMissingStub: _i5.Future<dynamic>.value(),
-      ) as _i5.Future<dynamic>);
-
-  @override
-  _i5.Future<dynamic> delete({
-    required String? path,
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #delete,
-          [],
-          {
-            #path: path,
-            #data: data,
-            #queryParameters: queryParameters,
-          },
-        ),
-        returnValue: _i5.Future<dynamic>.value(),
-        returnValueForMissingStub: _i5.Future<dynamic>.value(),
-      ) as _i5.Future<dynamic>);
+        returnValueForMissingStub: null,
+      );
 }

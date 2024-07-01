@@ -1,19 +1,22 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../common/app_colors.dart';
 import '../../common/app_images.dart';
 import '../../common/app_strings.dart';
 import '../../common/app_text_styles.dart';
 import '../../common/ui_helpers.dart';
-import '../../widgets/common/food_items/food_items.dart';
-import '../../widgets/common/shimmer_loading_recommended_suggestions/shimmer_loading_recommended_suggestions.dart';
 import 'dashboard_viewmodel.dart';
 
 class DashboardView extends StackedView<DashboardViewModel> {
-  const DashboardView({Key? key}) : super(key: key);
+  const DashboardView(
+      {required this.foodDetailsResponse, required this.file, Key? key})
+      : super(key: key);
+
+  final File file;
+  final Map foodDetailsResponse;
 
   @override
   Widget builder(
@@ -21,7 +24,20 @@ class DashboardView extends StackedView<DashboardViewModel> {
     DashboardViewModel viewModel,
     Widget? child,
   ) {
+    final dashboardScaffoldKey = GlobalKey<ScaffoldState>();
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      key: dashboardScaffoldKey,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primary01,
+        shape: const CircleBorder(),
+        onPressed: () => viewModel.actionRouteToOnboardingCategory(),
+        child: const Icon(
+          Icons.add,
+          color: AppColors.white,
+          size: 36,
+        ),
+      ),
       backgroundColor: AppColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -48,7 +64,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Hello ${viewModel.username}',
+                          '${AppText.ksHello} ${viewModel.username}',
                           style: AppTextStyles.titleRegularSize16.copyWith(
                               fontSize: 17.sp,
                               fontWeight: FontWeight.w500,
@@ -78,47 +94,107 @@ class DashboardView extends StackedView<DashboardViewModel> {
                 SizedBox(
                   height: 20.h,
                 ),
-                Builder(builder: (context) {
-                  /// Error State
-                  if (viewModel.hasError) {
-                    return const SizedBox.shrink();
-                  }
-
-                  /// Response Data not yet ready
-                  if (viewModel.fetchingRecommendedSuggestions) {
-                    return const ShimmerLoadingRecommendedSuggestions();
-                  }
-
-                  // /// Response Data is Empty
-                  // if (viewModel.fetchedRecommendedSuggestions == null ||
-                  //     viewModel.fetchedRecommendedSuggestions!.isEmpty) {
-                  //   return const SizedBox.shrink();
-                  // }
-
-                  /// Loaded Response
-                  return SizedBox(
-                    width: screenWidth(context).w,
-                    child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          mainAxisExtent: 280.h,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6.r),
+                  child: Image.file(
+                    file,
+                    fit: BoxFit.cover,
+                    width: size.width.w,
+                    height: 300.h,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  foodDetailsResponse["foodName"],
+                  style: AppTextStyles.titleRegularSize16.copyWith(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.grey01),
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+                Text(
+                  'Ingredients',
+                  style: AppTextStyles.titleRegularSize16.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.grey01),
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                SizedBox(
+                  width: screenWidth(context).w,
+                  child: GridView.builder(
+                      gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
+                        mainAxisExtent: 60.h,
+                      ),
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: foodDetailsResponse["ingredients"].length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(8.w),
+                          child: Container(
+                            padding: EdgeInsets.all(4.w),
+                            color: AppColors.white01,
+                            child: Center(
+                              child: Text(
+                                foodDetailsResponse["ingredients"][index],
+                                style: AppTextStyles.titleRegularSize16
+                                    .copyWith(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColors.grey01),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  'Instructions',
+                  style: AppTextStyles.titleRegularSize16.copyWith(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.grey01),
+                ),
+                SizedBox(
+                  height: 6.h,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List.generate(
+                      foodDetailsResponse["instructions"].length, (index) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          '* ${foodDetailsResponse["instructions"][index]}',
+                          style: AppTextStyles.titleRegularSize16.copyWith(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.grey01),
                         ),
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        itemBuilder: (BuildContext context, int index) {
-                          return FoodItems(
-                            foodImageUrl: AppImages.foodImage,
-                            foodName: 'Fried Rice',
-                            foodDesc: 'This is a Fried Rice Food Category',
-                            onTap: () => viewModel
-                                .actionRouteToIndividualFoodSuggestionView(),
-                          );
-                        }),
-                  );
-                }),
+                        SizedBox(
+                          height: 12.h,
+                        ),
+                      ],
+                    );
+                  }),
+                ),
               ],
             ),
           ),
