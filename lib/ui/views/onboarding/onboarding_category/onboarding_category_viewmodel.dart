@@ -93,7 +93,7 @@ class OnboardingCategoryViewModel extends BaseViewModel {
         actionRemoveImage();
         _utilsService.errorMsgNotification(
             text:
-                "Kindly upload an image of your preferred food that is not too blurry ");
+                "Kindly upload an image of your preferred food that is not too blurry");
       } else {
         actionRouteToDashboard(mapResponse);
       }

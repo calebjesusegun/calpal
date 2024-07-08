@@ -16,6 +16,7 @@ class GenerativeAiClientService {
         'Generate a list of well-defined instructions that are used by professional chefs in the world to cook the food step by step using the ingredients already provided. Include the number of minutes each section takes before moving to the next section within the instructions. Include the resources being used in the instructions as well. The instructions should be easy to follow and not hard to understand'
         'Provide your response as a JSON object with the following schema: {{"foodName": ""}, {"ingredients": ["", "", ...]}, {"instructions": ["", "", ...]}}'
         'Do not return your result as Markdown.'
+        'If an image is not a food, return an empty schema: {}'
         'If you are not sure about an image, return an empty schema: {}';
 
     final response = await model.generateContent([
