@@ -1,6 +1,6 @@
 /*
 ------------------------------------------------------------------------
-| STRING UTIL CLASS              | For: Oaks Intelligence               |
+| STRING UTIL CLASS             
 | ----------------------------------------------------------------------
 | By: Caleb Jesusegun            | Date: 17 - Apr - 2024                |
 | ----------------------------------------------------------------------
@@ -25,5 +25,11 @@ final class StringUtil {
     const suffixes = [" Bytes", " KB", " MB", " GB", " TB"];
     var i = (log(bytes) / log(1024)).floor();
     return ((bytes / pow(1024, i)).toStringAsFixed(decimals)) + suffixes[i];
+  }
+
+  static bool isValidEmail(String email) {
+    return RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+",
+    ).hasMatch(email);
   }
 }
